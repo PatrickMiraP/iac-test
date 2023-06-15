@@ -113,14 +113,21 @@ deployments:
 
 # This section describes the Topics of the data pipeline
 topics:
-  - name: rolling-window-output
+  - name: test
+    persisted: false
+    configuration:
+      partitions: 2
+      replicationFactor: 2
+      retentionInMinutes: 60
+      retentionInBytes: 52428800
+  - name: f1-data
     persisted: false
     configuration:
       partitions: 2
       replicationFactor: 2
       retentionInMinutes: 10080
       retentionInBytes: 262144000
-  - name: f1-data
+  - name: rolling-window-output
     persisted: false
     configuration:
       partitions: 2
