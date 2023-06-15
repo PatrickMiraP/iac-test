@@ -1,0 +1,31 @@
+# Quix Project Descriptor
+# This file describes the data pipeline and configuration of resources of a Quix Project.
+
+metadata:
+  version: 1.0
+
+# This section describes the Deployments of the data pipeline
+deployments:
+  - name: Demo Data
+    deploymentType: Job
+    resources:
+      cpu: 200
+      memory: 200
+      replicas: 1
+    libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
+    variables:
+      - name: Topic
+        inputType: OutputTopic
+        description: Name of the output topic to write into
+        required: true
+        value: f1-data
+
+# This section describes the Topics of the data pipeline
+topics:
+  - name: f1-data
+    persisted: false
+    configuration:
+      partitions: 2
+      replicationFactor: 2
+      retentionInMinutes: 10080
+      retentionInBytes: 262144000
