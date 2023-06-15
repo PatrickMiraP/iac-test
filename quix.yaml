@@ -19,19 +19,6 @@ deployments:
         description: Name of the output topic to write into
         required: true
         value: f1-data
-  - name: Demo Data 2
-    deploymentType: Service
-    resources:
-      cpu: 200
-      memory: 200
-      replicas: 2
-    libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
-    variables:
-      - name: Topic
-        inputType: OutputTopic
-        description: Name of the output topic to write into
-        required: true
-        value: f1-data
   - name: Rolling window
     deploymentType: Service
     resources:
@@ -81,17 +68,45 @@ deployments:
         description: Name of the input topic to listen to.
         required: true
         value: rolling-window-output
+  - name: Demo Data 2
+    deploymentType: Service
+    resources:
+      cpu: 200
+      memory: 200
+      replicas: 2
+    libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
+    desiredStatus: Running
+    variables:
+      - name: Topic
+        inputType: OutputTopic
+        description: Name of the output topic to write into
+        required: true
+        value: f1-data
+  - name: Demo Data-10
+    deploymentType: Job
+    resources:
+      cpu: 200
+      memory: 200
+      replicas: 1
+    libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
+    desiredStatus: Running
+    variables:
+      - name: Topic
+        inputType: OutputTopic
+        description: Name of the output topic to write into
+        required: true
+        value: f1-data
 
 # This section describes the Topics of the data pipeline
 topics:
-  - name: rolling-window-output
+  - name: f1-data
     persisted: false
     configuration:
       partitions: 2
       replicationFactor: 2
       retentionInMinutes: 10080
       retentionInBytes: 262144000
-  - name: f1-data
+  - name: rolling-window-output
     persisted: false
     configuration:
       partitions: 2
