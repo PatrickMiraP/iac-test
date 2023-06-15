@@ -52,6 +52,22 @@ deployments:
         description: 'Defines the window length. If Number of Observations: integer, if Time Period: 30sec, 1week, 3miliseconds, etc.'
         required: false
         value: 1min
+  - name: Streamlit
+    deploymentType: Service
+    resources:
+      cpu: 200
+      memory: 200
+      replicas: 1
+    publicAccess:
+      enabled: true
+      urlPrefix: streamlit
+    libraryItemId: a63000ab-b397-4b43-b42e-d54e1da7f627
+    variables:
+      - name: input
+        inputType: InputTopic
+        description: Name of the input topic to listen to.
+        required: true
+        value: rolling-window-output
 
 # This section describes the Topics of the data pipeline
 topics:
