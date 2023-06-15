@@ -82,20 +82,6 @@ deployments:
         description: Name of the output topic to write into
         required: true
         value: f1-data
-  - name: Demo Data-12
-    deploymentType: Job
-    resources:
-      cpu: 200
-      memory: 200
-      replicas: 1
-    libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
-    desiredStatus: Running
-    variables:
-      - name: Topic
-        inputType: OutputTopic
-        description: Name of the output topic to write into
-        required: true
-        value: f1-data
 
 # This section describes the Topics of the data pipeline
 topics:
