@@ -9,7 +9,7 @@ deployments:
   - name: Demo Data
     deploymentType: Service
     resources:
-      cpu: 200
+      cpu: {{ CpuDemoData }}
       memory: 200
       replicas: 2
     libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
