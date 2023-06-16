@@ -113,6 +113,13 @@ deployments:
 
 # This section describes the Topics of the data pipeline
 topics:
+  - name: realtime-csv-data
+    persisted: false
+    configuration:
+      partitions: 2
+      replicationFactor: 2
+      retentionInMinutes: 10080
+      retentionInBytes: 262144000
   - name: hard-braking
     persisted: false
     configuration:
