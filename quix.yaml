@@ -55,8 +55,8 @@ deployments:
   - name: Streamlit
     deploymentType: Service
     resources:
-      cpu: 200
-      memory: 200
+      cpu: 300
+      memory: 300
       replicas: 1
     publicAccess:
       enabled: true
@@ -71,8 +71,8 @@ deployments:
   - name: Demo Data 2
     deploymentType: Service
     resources:
-      cpu: 200
-      memory: 200
+      cpu: 300
+      memory: 300
       replicas: 2
     libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
     desiredStatus: Running
@@ -85,22 +85,8 @@ deployments:
   - name: Demo Data-12
     deploymentType: Job
     resources:
-      cpu: 200
-      memory: 200
-      replicas: 1
-    libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
-    desiredStatus: Running
-    variables:
-      - name: Topic
-        inputType: OutputTopic
-        description: Name of the output topic to write into
-        required: true
-        value: f1-data
-  - name: Demo Data 3
-    deploymentType: Job
-    resources:
-      cpu: 200
-      memory: 200
+      cpu: 300
+      memory: 300
       replicas: 1
     libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
     desiredStatus: Running
