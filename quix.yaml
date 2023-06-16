@@ -75,7 +75,6 @@ deployments:
       memory: 300
       replicas: 2
     libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
-    desiredStatus: Running
     variables:
       - name: Topic
         inputType: OutputTopic
@@ -89,7 +88,6 @@ deployments:
       memory: 300
       replicas: 1
     libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
-    desiredStatus: Running
     variables:
       - name: Topic
         inputType: OutputTopic
