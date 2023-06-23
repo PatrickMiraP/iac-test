@@ -1,10 +1,10 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-bionic as build
-WORKDIR /project
-COPY --from=git /project .
-RUN dotnet build ./Bridge.Console/Bridge.Console.csproj -o /buildoutput
+FROM python:3.11.1-slim-buster
 
+ENV DEBIAN_FRONTEND="noninteractive"
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONIOENCODING=UTF-8
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-bionic
 WORKDIR /app
-COPY --from=build /buildoutput .
-ENTRYPOINT dotnet Bridge.Console.dll
+COPY --from=git /project .
+RUN find | grep requirements.txt | xargs -I '{}' python3 -m pip install -i http://pip-cache.pip-cache.svc.cluster.local/simple --trusted-host pip-cache.pip-cache.svc.cluster.local -r '{}' --extra-index-url https://pypi.org/simple --extra-index-url https://pkgs.dev.azure.com/quix-analytics/53f7fe95-59fe-4307-b479-2473b96de6d1/_packaging/public/pypi/simple/
+ENTRYPOINT ["python3", "main.py"]
