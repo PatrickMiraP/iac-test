@@ -84,84 +84,10 @@ deployments:
         description: Name of the output topic to write into
         required: true
         value: f1-data
-  - name: Demo Data-12
-    deploymentType: Job
-    resources:
-      cpu: 300
-      memory: 300
-      replicas: 1
-    libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
-    variables:
-      - name: Topic
-        inputType: OutputTopic
-        description: Name of the output topic to write into
-        required: true
-        value: f1-data
-  - name: Demo Data-2
-    deploymentType: Job
-    resources:
-      cpu: 200
-      memory: 200
-      replicas: 1
-    libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
-    variables:
-      - name: Topic
-        inputType: OutputTopic
-        description: Name of the output topic to write into
-        required: true
-        value: f1-data
-  - name: Rolling window 2
-    deploymentType: Service
-    resources:
-      cpu: 200
-      memory: 200
-      replicas: 1
-    libraryItemId: c53e98ac-4953-4211-9541-d6364ceecbd6
-    desiredStatus: Stopped
-    variables:
-      - name: input
-        inputType: InputTopic
-        description: This is the input topic for raw data
-        required: true
-        value: f1-data
-      - name: output
-        inputType: OutputTopic
-        description: This is the output topic for the windowed data
-        required: true
-        value: rolling-window-output
-      - name: ParameterName
-        inputType: FreeText
-        description: The stream's parameter to perform the window function upon
-        required: true
-        value: ParameterA
-      - name: WindowType
-        inputType: FreeText
-        description: Rolling window length type (None, Number of Observations, Time Period)
-        required: false
-        value: Time Period
-      - name: WindowValue
-        inputType: FreeText
-        description: 'Defines the window length. If Number of Observations: integer, if Time Period: 30sec, 1week, 3miliseconds, etc.'
-        required: false
-        value: 1min
 
 # This section describes the Topics of the data pipeline
 topics:
-  - name: hello-world-source
-    persisted: false
-    configuration:
-      partitions: 2
-      replicationFactor: 2
-      retentionInMinutes: 10080
-      retentionInBytes: 262144000
-  - name: realtime-csv-data
-    persisted: false
-    configuration:
-      partitions: 2
-      replicationFactor: 2
-      retentionInMinutes: 10080
-      retentionInBytes: 262144000
-  - name: hard-braking
+  - name: f1-data
     persisted: false
     configuration:
       partitions: 2
@@ -169,13 +95,6 @@ topics:
       retentionInMinutes: 10080
       retentionInBytes: 262144000
   - name: rolling-window-output
-    persisted: false
-    configuration:
-      partitions: 2
-      replicationFactor: 2
-      retentionInMinutes: 10080
-      retentionInBytes: 262144000
-  - name: f1-data
     persisted: false
     configuration:
       partitions: 2
