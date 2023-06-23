@@ -13,6 +13,7 @@ deployments:
       memory: 200
       replicas: 2
     libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
+    desiredStatus: Stopped
     variables:
       - name: Topic
         inputType: OutputTopic
@@ -26,6 +27,7 @@ deployments:
       memory: 200
       replicas: 1
     libraryItemId: c53e98ac-4953-4211-9541-d6364ceecbd6
+    desiredStatus: Stopped
     variables:
       - name: input
         inputType: InputTopic
@@ -55,8 +57,8 @@ deployments:
   - name: Streamlit
     deploymentType: Service
     resources:
-      cpu: 200
-      memory: 200
+      cpu: 300
+      memory: 300
       replicas: 1
     publicAccess:
       enabled: true
@@ -71,11 +73,11 @@ deployments:
   - name: Demo Data 2
     deploymentType: Service
     resources:
-      cpu: 200
-      memory: 200
+      cpu: 300
+      memory: 300
       replicas: 2
     libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
-    desiredStatus: Running
+    desiredStatus: Stopped
     variables:
       - name: Topic
         inputType: OutputTopic
