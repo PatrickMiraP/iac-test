@@ -53,6 +53,39 @@ deployments:
         description: 'Defines the window length. If Number of Observations: integer, if Time Period: 30sec, 1week, 3miliseconds, etc.'
         required: false
         value: 1min
+  - name: Rolling window 2
+    deploymentType: Service
+    resources:
+      cpu: 200
+      memory: 200
+      replicas: 1
+    libraryItemId: c53e98ac-4953-4211-9541-d6364ceecbd6
+    variables:
+      - name: input
+        inputType: InputTopic
+        description: This is the input topic for raw data
+        required: true
+        value: f1-data
+      - name: output
+        inputType: OutputTopic
+        description: This is the output topic for the windowed data
+        required: true
+        value: rolling-window-output
+      - name: ParameterName
+        inputType: FreeText
+        description: The stream's parameter to perform the window function upon
+        required: true
+        value: ParameterA
+      - name: WindowType
+        inputType: FreeText
+        description: Rolling window length type (None, Number of Observations, Time Period)
+        required: false
+        value: Time Period
+      - name: WindowValue
+        inputType: FreeText
+        description: 'Defines the window length. If Number of Observations: integer, if Time Period: 30sec, 1week, 3miliseconds, etc.'
+        required: false
+        value: 1min
   - name: Streamlit
     deploymentType: Service
     resources:
