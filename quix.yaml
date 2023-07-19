@@ -13,7 +13,7 @@ deployments:
       memory: 200
       replicas: 2
     libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
-    desiredStatus: Stopped
+    desiredStatus: Running
     variables:
       - name: Topic
         inputType: OutputTopic
@@ -64,6 +64,7 @@ deployments:
       enabled: true
       urlPrefix: streamlit
     libraryItemId: a63000ab-b397-4b43-b42e-d54e1da7f627
+    desiredStatus: Running
     variables:
       - name: input
         inputType: InputTopic
@@ -87,14 +88,14 @@ deployments:
 
 # This section describes the Topics of the data pipeline
 topics:
-  - name: f1-data
+  - name: rolling-window-output
     persisted: false
     configuration:
       partitions: 2
       replicationFactor: 2
       retentionInMinutes: 10080
       retentionInBytes: 262144000
-  - name: rolling-window-output
+  - name: f1-data
     persisted: false
     configuration:
       partitions: 2
