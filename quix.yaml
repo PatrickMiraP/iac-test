@@ -27,7 +27,7 @@ deployments:
       memory: 200
       replicas: 1
     libraryItemId: c53e98ac-4953-4211-9541-d6364ceecbd6
-    desiredStatus: Stopped
+    desiredStatus: Running
     variables:
       - name: input
         inputType: InputTopic
