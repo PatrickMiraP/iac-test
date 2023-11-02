@@ -12,8 +12,7 @@ deployments:
       cpu: 200
       memory: 200
       replicas: 2
-    libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
-    desiredStatus: Running
+    desiredStatus: Stopped
     variables:
       - name: Topic
         inputType: OutputTopic
@@ -26,7 +25,6 @@ deployments:
       cpu: 200
       memory: 200
       replicas: 1
-    libraryItemId: c53e98ac-4953-4211-9541-d6364ceecbd6
     desiredStatus: Running
     variables:
       - name: input
@@ -63,7 +61,6 @@ deployments:
     publicAccess:
       enabled: true
       urlPrefix: streamlit
-    libraryItemId: a63000ab-b397-4b43-b42e-d54e1da7f627
     desiredStatus: Running
     variables:
       - name: input
@@ -77,7 +74,6 @@ deployments:
       cpu: 300
       memory: 300
       replicas: 2
-    libraryItemId: 7abe02e1-1e75-4783-864c-46b930b42afe
     desiredStatus: Stopped
     variables:
       - name: Topic
