@@ -12,7 +12,7 @@ deployments:
       cpu: 200
       memory: 200
       replicas: 2
-    desiredStatus: Stopped
+    desiredStatus: Running
     variables:
       - name: Topic
         inputType: OutputTopic
@@ -61,7 +61,7 @@ deployments:
     publicAccess:
       enabled: true
       urlPrefix: streamlit
-    desiredStatus: Running
+    desiredStatus: Stopped
     variables:
       - name: input
         inputType: InputTopic
