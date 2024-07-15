@@ -21,12 +21,12 @@ sdf = sdf[sdf["my_value"].notnull()]
 sdf = sdf.apply(lambda row: row["my_value"]) \
         .hopping_window(1000, 200).mean().final() 
 
-
+# function accepts data as dict and optionally, state.
 def func(data: dict, state: State):
     pass
 
-# Apply any transformation by handling the data in a lambda or function
-# Optionally enable state to perform stateful operations
+# Apply any transformation by handling the data in a lambda or function.
+# Optionally enable state to perform stateful operations.
 sdf = sdf.apply(func, stateful=True)
 
 # Print JSON messages in console.
