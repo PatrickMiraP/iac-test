@@ -23,6 +23,8 @@ sdf = sdf.apply(lambda row: row["my_value"]) \
 
 # function accepts data as dict and optionally, state.
 def func(data: dict, state: State):
+    # read more about stateful processing here:
+    # https://quix.io/docs/quix-streams/advanced/stateful-processing.html
     pass
 
 # Apply any transformation by handling the data in a lambda or function.
