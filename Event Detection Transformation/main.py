@@ -1,39 +1,30 @@
 import os
 from quixstreams import Application
-from datetime import datetime
 import json
 
 # for local dev, load env vars from a .env file
 from dotenv import load_dotenv
 load_dotenv()
 
-app = Application(consumer_group="hard-braking-v1", auto_offset_reset="earliest", use_changelog_topics=False)
+app = Application(consumer_group="default-group", auto_offset_reset="earliest", use_changelog_topics=False)
 
-input_topic = app.topic(os.environ["input"])
-output_topic = app.topic(os.environ["output"])
+input_topic = app.topic(os.getenv("input", "input-topic"))
+output_topic = app.topic(os.getenv("output", "output-topic"))
 
 sdf = app.dataframe(input_topic)
 
-# Filter items out without brake value.
-sdf = sdf[sdf["Brake"].notnull()] 
+# Filter items out without 'my_value' value.
+sdf = sdf[sdf["my_value"].notnull()] 
 
-# Calculate hopping window of 1s with 200ms steps.
-sdf = sdf.apply(lambda row: row["Brake"]) \
+# Calculate hopping window of 'my_value'. 
+# 1 second window with 200ms steps.
+sdf = sdf.apply(lambda row: row["my_value"]) \
         .hopping_window(1000, 200).mean().final() 
-        
-sdf = sdf.update(print)
 
-# Filter only windows where average brake force exceeded 50%.
-sdf = sdf[sdf["value"] > 0.5]
+def transform(data, state):
+    pass
 
-# Create nice JSON alert message.
-sdf = sdf.apply(lambda row: {
-    "Timestamp": str(datetime.fromtimestamp(row["start"]/1000)),
-    "Alert": {
-        "Title": "Hard braking detected.",
-        "Message": "For last 1 second, average braking power was " + str(row["value"])
-    }
-})
+sdf = sdf.apply(transform, use_state=True)
 
 # Print JSON messages in console.
 sdf = sdf.update(lambda row: print(json.dumps(row, indent=4)))
