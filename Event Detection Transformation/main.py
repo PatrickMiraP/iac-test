@@ -1,5 +1,5 @@
 import os
-from quixstreams import Application
+from quixstreams import Application, State
 import json
 
 # for local dev, load env vars from a .env file
@@ -21,10 +21,13 @@ sdf = sdf[sdf["my_value"].notnull()]
 sdf = sdf.apply(lambda row: row["my_value"]) \
         .hopping_window(1000, 200).mean().final() 
 
-def transform(data, state):
+
+def func(data: dict, state: State):
     pass
 
-sdf = sdf.apply(transform, use_state=True)
+# Apply any transformation by handling the data in a lambda or function
+# Optionally enable state to perform stateful operations
+sdf = sdf.apply(func, stateful=True)
 
 # Print JSON messages in console.
 sdf = sdf.update(lambda row: print(json.dumps(row, indent=4)))
